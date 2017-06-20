@@ -72,7 +72,7 @@ Y_test = np_utils.to_categorical(y_test)
 
 # Create the model for the neural network
 batch_size = 25
-hidden_units = 50
+hidden_units = 75
 nb_classes = 2
 model = Sequential()
 model.add(LSTM(output_dim=hidden_units, init='uniform', inner_init='uniform',
@@ -98,10 +98,12 @@ for prediction, label in zip(map(lambda x: np.argmax(x), model.predict(X_test)),
 test_audios = []
 test_audios.append(get_mfcc_from_file('audio/my-apple.wav'))
 test_audios.append(get_mfcc_from_file('audio/my-apple-2.wav'))
+test_audios.append(get_mfcc_from_file('audio/my-apple-3.wav'))
 test_audios.append(get_mfcc_from_file('audio/my-kiwi.wav'))
 test_audios.append(get_mfcc_from_file('audio/my-kiwi-2.wav'))
+test_audios.append(get_mfcc_from_file('audio/my-kiwi-3.wav'))
 
-labels = [0, 0, 1, 1]
+labels = [0, 0, 0, 1, 1, 1]
 predictions = map(lambda x: np.argmax(x), model.predict(np.array(test_audios)))
 
 print "Predicting different voices: "
